@@ -1,0 +1,3 @@
+rootProject.name = 'check-account-validator-kotlin'
+
+include 'main'
