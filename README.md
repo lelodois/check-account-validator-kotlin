@@ -1,8 +1,11 @@
-# Validar Contas Bancarias BR
+# Validar Contas Bancárias BR
 
-Projeto baseado no https://github.com/moip/bank-account-validator-js versao wm kotlin
+Versão em Kotlin do projeto https://github.com/moip/bank-account-validator-js
+
 
 ### Validação do dígito da conta
+
+Bancos disponíveis:
  - Itaú
  - Bradesco
  - Banco do Brasil
