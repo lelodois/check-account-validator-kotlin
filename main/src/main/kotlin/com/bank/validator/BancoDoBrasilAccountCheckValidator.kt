@@ -1,23 +1,18 @@
 package com.bank.validator
 
 import com.bank.BankAccount
+import java.util.stream.IntStream
 
 class BancoDoBrasilAccountCheckValidator : AccountCheckValidator {
 
     override fun calculateCheckAccount(bankAccount: BankAccount): String {
-        val accountNumber = StringBuilder(bankAccount.account)
         val pesoBB = "98765432"
-        var soma = 0
-        val x = pesoBB.length - accountNumber.length
+        val accountNumber = String.format("%0${pesoBB.length}d", Integer.parseInt(bankAccount.account))
 
-        for (j in 0 until x) accountNumber.insert(0, "0")
-
-        for (i in pesoBB.indices)
-            if (i >= x)
-                soma += Integer.parseInt(pesoBB.substring(i, i + 1)) * Integer
-                    .parseInt(accountNumber.substring(i, i + 1))
-
-        return module(soma)
+        return pesoBB.indices
+            .map { Integer.parseInt(pesoBB[it].toString()) * Integer.parseInt(accountNumber[it].toString()) }
+            .reduce { acc, i -> acc + i }
+            .let { module(it) }
     }
 
     private fun module(sumSeq: Int): String =
